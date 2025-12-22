@@ -61,12 +61,23 @@ This method ensures:
 - Deterministic table creation
 
 ## Verification
-Table creation was verified using pgAdmin:
+1. Table creation was verified using pgAdmin:
 ```pgsql
 Server -> Databases -> music_app -> Schemas -> public -> Tables
 ```
 ```bash
 users
+```
+2. How to verify it actually worked on flask shell
+```bash
+with app.app_context():
+    users = User.query.all()
+    for u in users:
+        print(u.id, u.email, u.is_admin)
+```
+- Output:
+```bash
+2 testuser@example.com True
 ```
 
 ## Developer Notes

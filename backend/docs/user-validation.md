@@ -25,6 +25,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String(255), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(
         db.DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc)
@@ -39,16 +40,23 @@ flask shell
 ```
 
 ```python
+
 from app.main import app
 from app.extensions import db
 from app.models.user import User
 
 with app.app_context():
-    user = User(email="testuser@example.com")
+     user = User(
+                     email="testuser@example.com"
+     )
+    user.set_password("password")
+
+
     db.session.add(user)
     db.session.commit()
+    print("User inserted with ID:", user.id)
+    print("Created at:", user.created_at)
 
-    print("Inserted user ID:", user.id)
 
 ```
 ### Expected output:
