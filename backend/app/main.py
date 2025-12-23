@@ -16,6 +16,10 @@ def create_app():
     def health():
         return jsonify({"status": "OK"}), 200
     
+
+    from app.routes.auth import auth_bp
+    app.register_blueprint(auth_bp)
+    
     return app
 
 app = create_app()
