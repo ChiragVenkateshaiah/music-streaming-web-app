@@ -7,6 +7,11 @@ def stream_audio(file_path):
     file_size = os.path.getsize(file_path)
     range_header = request.headers.get("Range", None)
 
+    print(
+        f"[STREAM] file={file_path}, "
+        f"range={request.headers.get('Range')}"
+    )
+
     if not range_header:
         return Response(
             open(file_path, "rb"),
@@ -42,7 +47,7 @@ def stream_audio(file_path):
 
     )
 
-    response.headers.add("Content_Range", f"bytes {start}-{end}/{file_size}")
+    response.headers.add("Content-Range", f"bytes {start}-{end}/{file_size}")
     response.headers.add("Accept-Ranges", "bytes")
     response.headers.add("Content-Length", str(length))
 
