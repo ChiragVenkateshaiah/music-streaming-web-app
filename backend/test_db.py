@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 
 engine = create_engine(
-    "postgresql://postgres:admin@localhost:5432/music_app"
+    "postgresql://postgres:music-streaming-app@db.cteoorioifetpeiidxuq.supabase.co:5432/postgres"
 )
 
 try:

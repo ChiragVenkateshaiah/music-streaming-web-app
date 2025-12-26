@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h3>Audio Streaming Test</h3>
+    <audio id="player" controls></audio>
+
+    <script>
+      fetch("http://127.0.0.1:5000/stream/test.mp3", {
+        headers: {
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2NjczMTI3OCwianRpIjoiZjZhOWM0YTMtNGExMC00MmRiLTk4ZTUtMjhhMzhkNjVhNDdjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjY3MzEyNzgsImNzcmYiOiI4NDc1OGU4Yy0xNTJlLTRlMWYtOGVlYi0zM2VjODNjODE2MjQiLCJleHAiOjE3NjY3MzIxNzh9.-wPGSF1Ao3JflKkPxfc25M9AqORSmpfls_Ol5vLPc-0"
+        }
+      })
+      .then(response => response.blob())
+      .then(blob => {
+        const url = URL.createObjectURL(blob);
+        document.getElementById("player").src = url;
+      });
+    </script>
+  </body>
+</html>
