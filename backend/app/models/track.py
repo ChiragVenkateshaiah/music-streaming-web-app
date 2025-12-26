@@ -11,6 +11,8 @@ class Track(db.Model):
     artist = db.Column(db.String(255), nullable=False)
     album = db.Column(db.String(255), nullable=True)
 
+    audio_file = db.Column(db.String(255), nullable=False)
+
     duration_seconds = db.Column(db.Integer, nullable=True)
     cover_image_url = db.Column(db.String(512), nullable=True)
 
