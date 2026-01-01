@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from app.config import Config
-from app.extensions import db, jwt, cors
+from app.extensions import db, jwt, cors, migrate
 
 
 
@@ -13,6 +13,7 @@ def create_app():
     db.init_app(app)
     jwt.init_app(app)
     cors.init_app(app)
+    migrate.init_app(app, db)
 
     @app.route("/health", methods=["GET"])
     def health():
@@ -21,10 +22,14 @@ def create_app():
     # Import blueprints INSIDE functions
     from app.routes.auth import auth_bp
     from app.routes.stream import stream_bp
+    from app.routes.playlists import playlist_bp
+    from app.routes.podcasts import podcast_bp
 
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(stream_bp)
+    app.register_blueprint(playlist_bp)
+    app.register_blueprint(podcast_bp)
 
     
     return app
