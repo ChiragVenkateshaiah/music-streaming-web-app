@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Podcast Audio Test (Backend Proxy)</h3>
+
+<audio id="player" controls></audio>
+
+<script>
+  const audioUrl = "https://audio.listennotes.com/e/p/9d3429778f524806a05594ce67e18b73/";
+  const jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2NzM1MTM1MywianRpIjoiY2Q5ODEzNDYtOTIwOC00OGE4LWI3ODItZThiOTk5ZDU5Yjg3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjczNTEzNTMsImNzcmYiOiIyNDA4YTY4MS1iYTI1LTQyNGEtOTFhNi0wYzhkNzNlYTZkMmEiLCJleHAiOjE3NjczNTIyNTN9.jOwcHV8ZWXFsxdCipzPlzf9RmBrxN8Tl8OBw-Qhy5Fw.EUFBh80WqraXCXWuxSzt0xMCU3_6JRXWrEsj-tmCbzI";
+
+  fetch(
+    `http://127.0.0.1:5000/podcasts/episodes/stream?audio_url=${encodeURIComponent(audioUrl)}`,
+    {
+      headers: {
+        "Authorization": `Bearer ${jwtToken}`
+      }
+    }
+  )
+  .then(res => {
+    if (!res.ok) throw new Error("Failed to stream audio");
+    return res.blob();
+  })
+  .then(blob => {
+    const url = URL.createObjectURL(blob);
+    document.getElementById("player").src = url;
+  })
+  .catch(err => console.error(err));
+</script>
+
+</body>
+</html>
+
+

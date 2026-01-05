@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sonic Wave Visualizer</title>
+    <style>
+        body {
+            background: #0b0b0b;
+            color: white;
+            text-align: center;
+        }
+        canvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>🎧 Sonic Wave Visualizer</h2>
+
+<canvas id="canvas" width="900" height="300"></canvas>
+
+<audio id="audio" controls crossorigin="anonymous">
+    <source src="https://cteoorioifetpeiidxuq.supabase.co/storage/v1/object/sign/audio/test.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV81YmViZTAwMi0wMTE5LTQxYzktODZiMi01ODNiNDc1MDk5YTUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhdWRpby90ZXN0Lm1wMyIsImlhdCI6MTc2NzM2MzEwMiwiZXhwIjoxNzY3MzYzNDAyfQ.6sMRWwYZyi5vytCxCAhqoa9CE1ZRGVW9cVZJDmlRHRI" type="audio/mpeg">
+</audio>
+
+<script src="visualizer.js"></script>
+
+</body>
+</html>

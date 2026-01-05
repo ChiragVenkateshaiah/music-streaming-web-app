@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Node / frontend
+node_modules/
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+
+# Audio / media (if large)
+media/
